@@ -1,4 +1,4 @@
-# WIP TTILE - Valko VN
+# WIP TITLE - Valko VN
 
 This is a visual novel made in Valko's honor to share fan-made stories about him.
 
