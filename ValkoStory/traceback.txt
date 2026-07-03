@@ -1,56 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-After initialization, but before game start.
-  File "game/screens.rpy", line 601, in prepare_screen
-    screen stories():
-  File "game/screens.rpy", line 601, in prepare
-    screen stories():
-  File "game/screens.rpy", line 606, in prepare
-    vbox:
-  File "game/screens.rpy", line 606, in prepare
-    vbox:
-  File "game/screens.rpy", line 614, in prepare
-    grid 2 2:
-  File "game/screens.rpy", line 614, in prepare
-    grid 2 2:
-SyntaxError: invalid syntax (game/screens.rpy, line 615)
+While running game code:
+Exception: Could not load the game. Perhaps the script changed in an incompatible way.
 
 -- Full Traceback ------------------------------------------------------------
 
-Full traceback:
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\bootstrap.py", line 359, in bootstrap
-    renpy.main.main()
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\main.py", line 652, in main
-    run(restart)
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\main.py", line 94, in run
-    renpy.display.screen.prepare_screens()
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\display\screen.py", line 1027, in prepare_screens
-    s.ast.prepare_screen()
-  File "game/screens.rpy", line 601, in prepare_screen
-    screen stories():
-  File "game/screens.rpy", line 601, in prepare
-    screen stories():
-  File "game/screens.rpy", line 606, in prepare
-    vbox:
-  File "game/screens.rpy", line 606, in prepare
-    vbox:
-  File "game/screens.rpy", line 614, in prepare
-    grid 2 2:
-  File "game/screens.rpy", line 614, in prepare
-    grid 2 2:
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\py3analysis.py", line 803, in ast_eval
-    return self.ast_eval_literal(expr)[0]
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\py3analysis.py", line 785, in ast_eval_literal
-    expr = py_compile(expr, 'eval', ast_node=True)
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\python.py", line 1153, in py_compile
-    raise e
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\python.py", line 1090, in py_compile
-    raise orig_e
-  File "C:\Users\danie\Documents\Coding Dev Stuff\Renpy\renpy-8.3.7-sdk\renpy\python.py", line 1082, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
-SyntaxError: invalid syntax (game/screens.rpy, line 615)
+Traceback (most recent call last):
+  File "renpy/common/00start.rpy", line 234, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 558, in script
+    python hide:
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/00keymap.rpy", line 558, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 573, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/loadsave.py", line 638, in load
+    log.unfreeze(roots, label="_after_load")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/rollback.py", line 1099, in unfreeze
+    raise Exception("Could not load the game. Perhaps the script changed in an incompatible way.")
+Exception: Could not load the game. Perhaps the script changed in an incompatible way.
 
-Windows-10-10.0.26200 AMD64
-Ren'Py 8.3.7.25031702
+Windows-11-10.0.26200-SP0 AMD64
+Ren'Py 8.5.2.26010301
 ValkoStory 1.0
-Wed Jul  1 11:23:29 2026
+Thu Jul  2 21:05:05 2026
