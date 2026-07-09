@@ -490,7 +490,7 @@ screen about():
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+            # text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 style about_label is gui_label
@@ -557,7 +557,9 @@ screen stories():
                     style "no_border_frame"
                     xfill True
                     yfill True
-                    text "Card [i]" size 40 align(0.5,0.5) bold True color "#000000"
+                    
+                    # text_size 40 align(0.5,0.5) bold True color "#000000"
+                    textbutton "card [i]" action Start("card_1")
 
     text "SELECT A STORY" size 40 xalign 0.5 bold True color "#ffffff"
     textbutton "Back to Main Menu" text_idle_color "#ffffff" action Return() xalign 0.5 yalign 0.99

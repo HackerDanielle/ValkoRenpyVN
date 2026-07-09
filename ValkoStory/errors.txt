@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 552: 'vbar_right_margin' is not a keyword argument or valid child of the vpgrid statement.
-    vbar_right_margin 30
-                     ^
+File "game/screens.rpy", line 562: 'size' is not a keyword argument or valid child of the textbutton statement.
+    textbutton "card [i]" action Start("card_1") xalign 0.5 yalign 0.5 size 40 bold True color "#000000"
+                                                                           ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Jul  2 21:06:34 2026
+Thu Jul  9 13:58:52 2026

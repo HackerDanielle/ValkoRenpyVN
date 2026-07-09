@@ -32,11 +32,11 @@ label start:
 
     return
 
-label chapter_1:
+label card_1:
     scene bg room1
-    "Welcome to Chapter 1!"
-    jump chapter_2
+    "Welcome to Story 1!"
+    jump card_2
 
-label chapter_2:
+label card_2:
     scene bg room2
-    "Welcome to Chapter 2!"
+    "Welcome to Story 2!"
