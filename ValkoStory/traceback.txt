@@ -1,34 +1,117 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-Exception: Could not load the game. Perhaps the script changed in an incompatible way.
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "game/screens.rpy", line 414, in prepare_screen
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 414, in prepare
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "game/screens.rpy", line 414, in prepare_screen
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 414, in prepare
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/common/00start.rpy", line 234, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 558, in script
-    python hide:
+  File "renpy/common/00start.rpy", line 216, in script
+    python:
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00keymap.rpy", line 558, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 573, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/loadsave.py", line 638, in load
-    log.unfreeze(roots, label="_after_load")
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/rollback.py", line 1099, in unfreeze
-    raise Exception("Could not load the game. Perhaps the script changed in an incompatible way.")
-Exception: Could not load the game. Perhaps the script changed in an incompatible way.
+  File "renpy/common/00start.rpy", line 217, in <module>
+    _init_language()
+    ~~~~~~~~~~~~~~^^
+  File "renpy/common/00start.rpy", line 86, in _init_language
+    renpy.change_language(language, force=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/translation/__init__.py", line 854, in change_language
+    renpy.style.rebuild()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 414, in prepare_screen
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 414, in prepare
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "renpy/sl2/slast.py", line 2019, in prepare
+    raise renpy.display.screen.ScreenNotFound(self.target)
+renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "renpy/bootstrap.py", line 401, in bootstrap
+    renpy.main.main()
+    ~~~~~~~~~~~~~~~^^
+  File "renpy/main.py", line 591, in main
+    run(restart)
+    ~~~^^^^^^^^^
+  File "renpy/main.py", line 137, in run
+    renpy.execution.run_context(True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "renpy/execution.py", line 1036, in run_context
+    context.run()
+    ~~~~~~~~~~~^^
+  File "renpy/common/00start.rpy", line 216, in script
+    python:
+  File "renpy/common/00start.rpy", line 216, in script
+    python:
+  File "renpy/display/error.py", line 135, in report_exception
+    renpy.game.invoke_in_new_context(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        call_exception_screen,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ignore_action=ignore_action,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/game.py", line 285, in invoke_in_new_context
+    return callable(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "renpy/display/error.py", line 44, in call_exception_screen
+    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ui.py", line 306, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 2154, in interact
+    repeat, rv = self.interact_core(
+                 ~~~~~~~~~~~~~~~~~~^
+        preloads=preloads,
+        ^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "renpy/display/core.py", line 2384, in interact_core
+    renpy.display.screen.prepare_screens()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 414, in prepare_screen
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 414, in prepare
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "renpy/sl2/slast.py", line 2019, in prepare
+    raise renpy.display.screen.ScreenNotFound(self.target)
+renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 ValkoStory 1.0
-Thu Jul  2 21:05:05 2026
+Wed Jul 15 22:23:03 2026
