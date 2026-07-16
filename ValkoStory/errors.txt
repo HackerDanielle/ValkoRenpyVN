@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 222: screen statement expects a non-empty block.
-    screen navigation():
-           ^
+File "game/screens.rpy", line 287: expected 'simple_expression' not found.
+    font
+         ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Wed Jul 15 22:22:49 2026
+Thu Jul 16 07:04:05 2026

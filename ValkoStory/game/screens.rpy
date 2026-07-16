@@ -211,14 +211,6 @@ style quick_button_text:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
-define xBtnSize = 270
-define yBtnSize = 100
-image startBtn = im.Scale("gui/button/start_button.png",  xBtnSize, yBtnSize)
-image storiesBtn = im.Scale("gui/button/stories_button.png",  xBtnSize, yBtnSize)
-image loadBtn = im.Scale("gui/button/load_button.png",  xBtnSize, yBtnSize)
-image preferencesBtn = im.Scale("gui/button/preferences_button.png",  xBtnSize, yBtnSize)
-image quitBtn = im.Scale("gui/button/quit_button.png",  xBtnSize, yBtnSize)
-
 # screen navigation():
 
     # vbox:
@@ -290,7 +282,8 @@ style navigation_button:
     properties gui.button_properties("navigation_button")
 
 style navigation_button_text:
-    properties gui.text_properties("navigation_button")
+    color "#FFFFFF"
+    size 20
 
 
 ## Main Menu screen ############################################################
@@ -298,6 +291,14 @@ style navigation_button_text:
 ## Used to display the main menu when Ren'Py starts.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
+
+define xBtnSize = 270
+define yBtnSize = 100
+image startBtn = im.Scale("gui/button/start_button.png",  xBtnSize, yBtnSize)
+image storiesBtn = im.Scale("gui/button/stories_button.png",  xBtnSize, yBtnSize)
+image loadBtn = im.Scale("gui/button/load_button.png",  xBtnSize, yBtnSize)
+image preferencesBtn = im.Scale("gui/button/preferences_button.png",  xBtnSize, yBtnSize)
+image quitBtn = im.Scale("gui/button/quit_button.png",  xBtnSize, yBtnSize)
 
 screen main_menu():
 
@@ -360,15 +361,16 @@ screen main_menu():
                 action Quit(confirm=not main_menu)
     hbox:
         style_prefix "navigation"
-        xalign 0.0
-        yalign 1.0
+        xalign 0.025
+        yalign 0.98
+        spacing 20
 
         if main_menu:
             if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
                 # Help isn't necessary or relevant to mobile devices.
-                textbutton _("Help") action ShowMenu("help")
-            textbutton _("About") action ShowMenu("about")
-            textbutton _("Credits") action ShowMenu("credits")
+                textbutton _("HELP") action ShowMenu("help")
+            textbutton _("ABOUT") action ShowMenu("about")
+            textbutton _("CREDITS") action ShowMenu("credits")
 
     if gui.show_name:
         vbox:

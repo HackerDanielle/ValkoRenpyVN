@@ -1,21 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "game/screens.rpy", line 414, in prepare_screen
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 414, in prepare
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+While processing the color property of style navigation_button_text:
+  File "renpy/style.pyx", line 803, in renpy.style.rebuild
+  File "renpy/style.pyx", line 796, in renpy.style.build_styles
+  File "renpy/style.pyx", line 717, in renpy.style.build_style
+  File "renpy/style.pyx", line 714, in renpy.style.build_style
+  File "tmp/gen3-static/style_functions.pyx", line 336, in style_functions.color_property
+Exception: Color string '' must be 3, 4, 6, or 8 hex digits long.
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/screens.rpy", line 414, in prepare_screen
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 414, in prepare
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+  File "renpy/style.pyx", line 803, in renpy.style.rebuild
+  File "renpy/style.pyx", line 796, in renpy.style.build_styles
+  File "renpy/style.pyx", line 717, in renpy.style.build_style
+  File "renpy/style.pyx", line 714, in renpy.style.build_style
+  File "tmp/gen3-static/style_functions.pyx", line 336, in style_functions.color_property
+Exception: Color string '' must be 3, 4, 6, or 8 hex digits long.
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -37,17 +38,14 @@ Traceback (most recent call last):
   File "renpy/translation/__init__.py", line 854, in change_language
     renpy.style.rebuild()
     ~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 414, in prepare_screen
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 414, in prepare
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "renpy/sl2/slast.py", line 2019, in prepare
-    raise renpy.display.screen.ScreenNotFound(self.target)
-renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+  File "renpy/style.pyx", line 803, in renpy.style.rebuild
+  File "renpy/style.pyx", line 796, in renpy.style.build_styles
+  File "renpy/style.pyx", line 717, in renpy.style.build_style
+  File "renpy/style.pyx", line 714, in renpy.style.build_style
+  File "tmp/gen3-static/style_functions.pyx", line 336, in style_functions.color_property
+  File "renpy/color.py", line 204, in __new__
+    raise Exception(f"Color string {color!r} must be 3, 4, 6, or 8 hex digits long.")
+Exception: Color string '' must be 3, 4, 6, or 8 hex digits long.
 
 During handling of the above exception, another exception occurred:
 
@@ -97,21 +95,22 @@ Traceback (most recent call last):
         ^^^^^^^^^
     )
     ^
-  File "renpy/display/core.py", line 2384, in interact_core
-    renpy.display.screen.prepare_screens()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 414, in prepare_screen
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 414, in prepare
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "renpy/sl2/slast.py", line 2019, in prepare
-    raise renpy.display.screen.ScreenNotFound(self.target)
-renpy.display.screen.ScreenNotFound: Screen 'navigation' is not known.
+  File "renpy/display/core.py", line 2444, in interact_core
+    i()
+    ~^^
+  File "renpy/common/00stylepreferences.rpy", line 99, in _m1_00stylepreferences__update
+    renpy.style.rebuild()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/style.pyx", line 803, in renpy.style.rebuild
+  File "renpy/style.pyx", line 796, in renpy.style.build_styles
+  File "renpy/style.pyx", line 717, in renpy.style.build_style
+  File "renpy/style.pyx", line 714, in renpy.style.build_style
+  File "tmp/gen3-static/style_functions.pyx", line 336, in style_functions.color_property
+  File "renpy/color.py", line 204, in __new__
+    raise Exception(f"Color string {color!r} must be 3, 4, 6, or 8 hex digits long.")
+Exception: Color string '' must be 3, 4, 6, or 8 hex digits long.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 ValkoStory 1.0
-Wed Jul 15 22:23:03 2026
+Thu Jul 16 07:00:21 2026
