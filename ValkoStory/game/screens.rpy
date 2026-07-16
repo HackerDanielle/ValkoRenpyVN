@@ -211,51 +211,75 @@ style quick_button_text:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
-screen navigation():
+define xBtnSize = 270
+define yBtnSize = 100
+image startBtn = im.Scale("gui/button/start_button.png",  xBtnSize, yBtnSize)
+image storiesBtn = im.Scale("gui/button/stories_button.png",  xBtnSize, yBtnSize)
+image loadBtn = im.Scale("gui/button/load_button.png",  xBtnSize, yBtnSize)
+image preferencesBtn = im.Scale("gui/button/preferences_button.png",  xBtnSize, yBtnSize)
+image quitBtn = im.Scale("gui/button/quit_button.png",  xBtnSize, yBtnSize)
 
-    vbox:
-        style_prefix "navigation"
+# screen navigation():
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+    # vbox:
+    #     style_prefix "navigation"
+    #     xalign 0.5
+    #     yalign 0.75
 
-        spacing gui.navigation_spacing
+    #     spacing gui.navigation_spacing
 
-        if main_menu:
+    #     if main_menu:
+    #         imagebutton:
+    #             idle "startBtn"
+    #             hover Transform("startBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action Start()
+    #         imagebutton:
+    #             idle "storiesBtn"
+    #             hover Transform("storiesBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action Show("stories")
+    #         imagebutton:
+    #             idle "loadBtn"
+    #             hover Transform("loadBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action ShowMenu("load")
+    #         imagebutton:
+    #             idle "preferencesBtn"
+    #             hover Transform("preferencesBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action ShowMenu("preferences")
+    #     else:
+    #         textbutton _("History") action ShowMenu("history")
+    #         textbutton _("Save") action ShowMenu("save")
+    #         imagebutton:
+    #             idle "loadBtn"
+    #             hover Transform("loadBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action ShowMenu("load")
+    #         imagebutton:
+    #             idle "preferencesBtn"
+    #             hover Transform("preferencesBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action ShowMenu("preferences")
 
-            textbutton _("Start") action Start()
-            textbutton _("Stories") action Show("stories")
+    #     if _in_replay:
+    #         textbutton _("End Replay") action EndReplay(confirm=True)
+    #     elif not main_menu:
+    #         textbutton _("Main Menu") action MainMenu()
 
-        else:
+    #     if renpy.variant("pc"):
+    #         ## The quit button is banned on iOS and unnecessary on Android and
+    #         ## Web.
+    #         imagebutton:
+    #             idle "quitBtn"
+    #             hover Transform("quitBtn", matrixcolor=BrightnessMatrix(-0.1))
+    #             action Quit(confirm=not main_menu)
+    # hbox:
+    #     style_prefix "navigation"
+    #     xalign 0.0
+    #     yalign 1.0
 
-            textbutton _("History") action ShowMenu("history")
-
-            textbutton _("Save") action ShowMenu("save")
-
-        textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
-
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
-
-        elif not main_menu:
-
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
-
-        if renpy.variant("pc"):
-
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+    #     if main_menu:
+    #         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+    #             # Help isn't necessary or relevant to mobile devices.
+    #             textbutton _("Help") action ShowMenu("help")
+    #         textbutton _("About") action ShowMenu("about")
+    #         textbutton _("Credits") action ShowMenu("credits")
 
 
 style navigation_button is gui_button
@@ -282,24 +306,75 @@ screen main_menu():
 
     add gui.main_menu_background
 
-    ## This empty frame darkens the main menu.
+    # This empty frame darkens the main menu.
     frame:
         style "main_menu_frame"
 
-    ## The use statement includes another screen inside this one. The actual
-    ## contents of the main menu are in the navigation screen.
-    use navigation
+    vbox:
+        style_prefix "navigation"
+        xalign 0.5
+        yalign 0.75
+
+        spacing gui.navigation_spacing
+
+        if main_menu:
+            imagebutton:
+                idle "startBtn"
+                hover Transform("startBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action Start()
+            imagebutton:
+                idle "storiesBtn"
+                hover Transform("storiesBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action Show("stories")
+            imagebutton:
+                idle "loadBtn"
+                hover Transform("loadBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action ShowMenu("load")
+            imagebutton:
+                idle "preferencesBtn"
+                hover Transform("preferencesBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action ShowMenu("preferences")
+        else:
+            textbutton _("History") action ShowMenu("history")
+            textbutton _("Save") action ShowMenu("save")
+            imagebutton:
+                idle "loadBtn"
+                hover Transform("loadBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action ShowMenu("load")
+            imagebutton:
+                idle "preferencesBtn"
+                hover Transform("preferencesBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action ShowMenu("preferences")
+
+        if _in_replay:
+            textbutton _("End Replay") action EndReplay(confirm=True)
+        elif not main_menu:
+            textbutton _("Main Menu") action MainMenu()
+
+        if renpy.variant("pc"):
+            ## The quit button is banned on iOS and unnecessary on Android and
+            ## Web.
+            imagebutton:
+                idle "quitBtn"
+                hover Transform("quitBtn", matrixcolor=BrightnessMatrix(-0.1))
+                action Quit(confirm=not main_menu)
+    hbox:
+        style_prefix "navigation"
+        xalign 0.0
+        yalign 1.0
+
+        if main_menu:
+            if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+                # Help isn't necessary or relevant to mobile devices.
+                textbutton _("Help") action ShowMenu("help")
+            textbutton _("About") action ShowMenu("about")
+            textbutton _("Credits") action ShowMenu("credits")
 
     if gui.show_name:
-
         vbox:
             style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+            add "gui/title.png" size (1000, 167)
 
 
 style main_menu_frame is empty
@@ -312,14 +387,10 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
-
 style main_menu_vbox:
-    xalign 1.0
-    xoffset -30
+    xalign 0.5
     xmaximum 1200
-    yalign 1.0
-    yoffset -30
+    yalign 0.05
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
@@ -398,7 +469,7 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
                     transclude
 
-    use navigation
+    # use navigation
 
     textbutton _("Return"):
         style "return_button"
@@ -499,6 +570,19 @@ style about_text is gui_text
 
 style about_label_text:
     size gui.label_text_size
+
+screen credits():
+    tag menu 
+
+    ## This use statement includes the game_menu screen inside this one. The
+    ## vbox child is then included inside the viewport inside the game_menu
+    ## screen.
+    use game_menu(_("Credits"), scroll="viewport"):
+
+        style_prefix "about"
+
+        vbox:
+            text _("Credits idk lol")
 
 
 ## Load and Save screens #######################################################
