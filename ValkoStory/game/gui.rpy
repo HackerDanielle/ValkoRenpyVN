@@ -14,6 +14,8 @@ init python:
 ## Enable checks for invalid or unstable properties in screens or transforms
 define config.check_conflicting_properties = True
 
+define red = "#3F081D"
+define green = "#132B39"
 
 ################################################################################
 ## GUI Configuration Variables
@@ -25,8 +27,6 @@ define config.check_conflicting_properties = True
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define red = "#3F081D"
-define green = "#132B39"
 define gui.accent_color = preferences.theme == "red" and red or green
 
 ## The color used for a text button when it is neither selected nor hovered.
