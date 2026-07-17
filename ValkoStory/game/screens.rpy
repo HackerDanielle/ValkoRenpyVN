@@ -778,15 +778,25 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
+define red = "#3F081D"
+define green = "#132B39"
+
+init python:
+    def apply_theme(theme):
+        preferences.theme = theme
+        gui.main_menu_background = im.Scale(f"gui/{preferences.theme}_main_menu.png", 1920, 1080)
+        gui.accent_color = red if theme == "red" else green
+        gui.rebuild()
+
 screen preferences():
 
     tag menu
 
     use game_menu(_("Preferences"), scroll="viewport"):
 
-        vbox:
+        hbox:
 
-            hbox:
+            vbox:
                 box_wrap True
 
                 if renpy.variant("pc") or renpy.variant("web"):
@@ -809,7 +819,7 @@ screen preferences():
 
             null height (4 * gui.pref_spacing)
 
-            hbox:
+            vbox:
                 style_prefix "slider"
                 box_wrap True
 
@@ -857,6 +867,18 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+            vbox: 
+                box_wrap True
+                vbox:
+                        style_prefix "radio"
+                        label _("Theme")
+                        textbutton _("Tameless Game") action [
+                            Function(apply_theme, "green")
+                        ]
+
+                        textbutton _("Tameless Territory") action [
+                            Function(apply_theme, "red")
+                        ]
 
 
 style pref_label is gui_label

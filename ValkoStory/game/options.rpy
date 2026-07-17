@@ -128,6 +128,9 @@ default preferences.text_cps = 0
 
 default preferences.afm_time = 15
 
+## The default theme
+default preferences.theme = "red"
+
 
 ## Save directory ##############################################################
 ##
