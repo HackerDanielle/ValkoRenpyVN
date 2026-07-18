@@ -326,7 +326,7 @@ screen main_menu():
             imagebutton:
                 idle "storiesBtn"
                 hover Transform("storiesBtn", matrixcolor=BrightnessMatrix(-0.1))
-                action Show("stories")
+                action ShowMenu("stories")
             imagebutton:
                 idle "loadBtn"
                 hover Transform("loadBtn", matrixcolor=BrightnessMatrix(-0.1))
@@ -413,12 +413,14 @@ style main_menu_version:
 ## This screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
 
+image backBtn = im.Scale("gui/button/back.png",  60, 60)
+
 screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     style_prefix "game_menu"
 
     if main_menu:
-        add gui.main_menu_background
+        add "#e3e3e3"
     else:
         add gui.game_menu_background
 
@@ -426,11 +428,6 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
         style "game_menu_outer_frame"
 
         hbox:
-
-            ## Reserve space for the navigation section.
-            frame:
-                style "game_menu_navigation_frame"
-
             frame:
                 style "game_menu_content_frame"
 
@@ -471,11 +468,10 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
                     transclude
 
-    # use navigation
-
-    textbutton _("Return"):
+    imagebutton:
+        idle "backBtn"
+        hover Transform("backBtn", matrixcolor=BrightnessMatrix(-0.1))
         style "return_button"
-
         action Return()
 
     label title
@@ -501,8 +497,6 @@ style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
 
-    background "gui/overlay/game_menu.png"
-
 style game_menu_navigation_frame:
     xsize 420
     yfill True
@@ -522,17 +516,19 @@ style game_menu_side:
     spacing 15
 
 style game_menu_label:
-    xpos 75
+    xpos 150
     ysize 180
 
 style game_menu_label_text:
     size gui.title_text_size
     color gui.accent_color
     yalign 0.5
+    font gui.name_text_font
 
 style return_button:
     xpos gui.navigation_xpos
-    yalign 1.0
+    yalign 0.1
+    xoffset 10
     yoffset -45
 
 
@@ -778,62 +774,93 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
+image switchOn = im.Scale("gui/button/switch_on.png",  76, 33)
+image switchOff = im.Scale("gui/button/switch_off.png",  76, 33)
+
 screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("PREFERENCES")):
 
         hbox:
+            spacing 50
 
             vbox:
                 box_wrap True
+                spacing 150
 
                 if renpy.variant("pc") or renpy.variant("web"):
 
                     vbox:
+                        spacing 10
                         style_prefix "radio"
-                        label _("Display")
+                        label _("DISPLAY")
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 vbox:
                     style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                    spacing 25
+                    label _("SKIP")
+                    hbox:
+                        spacing 35
+                        text "Unseen Text" 
+                        imagebutton:
+                            yalign 0.5
+                            idle "switchOff"
+                            hover "switchOn"
+                            selected_idle "switchOn"
+                            selected_hover "switchOff"
+                            action Preference("skip", "toggle")
+                    hbox:
+                        spacing 17
+                        text "After Choices" 
+                        imagebutton:
+                            yalign 0.5
+                            idle "switchOff"
+                            hover "switchOn"
+                            selected_idle "switchOn"
+                            selected_hover "switchOff"
+                            action Preference("after choices", "toggle")
+                    hbox:
+                        spacing 50
+                        text "Transitions" 
+                        imagebutton:
+                            yalign 0.5
+                            idle "switchOff"
+                            hover "switchOn"
+                            selected_idle "switchOn"
+                            selected_hover "switchOff"
+                            action InvertSelected(Preference("transitions", "toggle"))
 
             null height (4 * gui.pref_spacing)
 
             vbox:
                 style_prefix "slider"
                 box_wrap True
+                spacing 150
 
                 vbox:
-
-                    label _("Text Speed")
+                    label _("TEXT SPEED")
 
                     bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                    label _("AUTO-FORWARD TIME")
 
                     bar value Preference("auto-forward time")
 
                 vbox:
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("MUSIC VOLUME")
 
                         hbox:
                             bar value Preference("music volume")
 
                     if config.has_sound:
 
-                        label _("Sound Volume")
+                        label _("SOUND VOLUME")
 
                         hbox:
                             bar value Preference("sound volume")
@@ -843,7 +870,7 @@ screen preferences():
 
 
                     if config.has_voice:
-                        label _("Voice Volume")
+                        label _("VOICE VOLUME")
 
                         hbox:
                             bar value Preference("voice volume")
@@ -860,15 +887,16 @@ screen preferences():
             vbox: 
                 box_wrap True
                 vbox:
-                        style_prefix "radio"
-                        label _("Theme")
-                        textbutton _("Tameless Game") action [
-                            Function(apply_theme, "green")
-                        ]
+                    spacing 10
+                    style_prefix "radio"
+                    label _("THEME")
+                    textbutton _("Tameless Game") action [
+                        Function(apply_theme, "green")
+                    ]
 
-                        textbutton _("Tameless Territory") action [
-                            Function(apply_theme, "red")
-                        ]
+                    textbutton _("Tameless Territory") action [
+                        Function(apply_theme, "red")
+                    ]
 
 
 style pref_label is gui_label
@@ -886,6 +914,7 @@ style check_label_text is pref_label_text
 style check_button is gui_button
 style check_button_text is gui_button_text
 style check_vbox is pref_vbox
+style check_text is pref_text
 
 style slider_label is pref_label
 style slider_label_text is pref_label_text
@@ -903,6 +932,12 @@ style pref_label:
 
 style pref_label_text:
     yalign 1.0
+    font gui.interface_label_font
+
+style pref_text:
+    yalign 1.0
+    font gui.interface_text_font
+    color gui.accent_color
 
 style pref_vbox:
     xsize 338
