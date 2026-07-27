@@ -55,11 +55,13 @@ style vscrollbar:
 
 style slider:
     ysize gui.slider_size
-    right_bar Frame("gui/slider/horizontal_empty_bar.png", gui.slider_borders, tile=gui.slider_tile)
-    left_bar Frame("gui/slider/horizontal_full_bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb Frame("gui/slider/horizontal_thumb.png", 40,71)
-    thumb_offset -20
-    # thumb_align 0.5
+    right_bar Transform("gui/slider/horizontal_empty_bar.png", ysize=gui.slider_size)
+    left_bar Fixed(
+        Transform("gui/slider/horizontal_full_bar.png", ysize=gui.slider_size),
+        Transform("gui/slider/horizontal_left.png", ysize=gui.slider_size),
+    )
+    thumb Transform("gui/slider/horizontal_thumb.png", ysize=gui.slider_size)
+    thumb_offset 0
 
 style vslider:
     xsize gui.slider_size

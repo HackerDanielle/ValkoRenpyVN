@@ -431,6 +431,16 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
             frame:
                 style "game_menu_content_frame"
 
+                null height 8
+
+                frame:
+                    background "#3F081D"
+                    xfill True
+                    ysize 2
+                    yoffset -65
+
+                null height 25
+
                 if scroll == "viewport":
 
                     viewport:
@@ -782,7 +792,6 @@ screen preferences():
     tag menu
 
     use game_menu(_("PREFERENCES")):
-
         hbox:
             spacing 50
 
@@ -947,7 +956,6 @@ style radio_vbox:
 
 style radio_button:
     properties gui.button_properties("radio_button")
-    foreground "gui/button/radio_[prefix_]foreground.png"
 
 style radio_button_text:
     properties gui.text_properties("radio_button")
