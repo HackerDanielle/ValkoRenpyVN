@@ -14,6 +14,8 @@ init python:
 ## Enable checks for invalid or unstable properties in screens or transforms
 define config.check_conflicting_properties = True
 
+define red = "#3F081D"
+define green = "#132B39"
 
 ################################################################################
 ## GUI Configuration Variables
@@ -25,7 +27,7 @@ define config.check_conflicting_properties = True
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#0099cc'
+define gui.accent_color = preferences.theme == "red" and red or green
 
 ## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = '#888888'
@@ -57,13 +59,14 @@ define gui.interface_text_color = '#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "gui/EBGaramond-SemiBold.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "gui/EBGaramond-SemiBold.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "gui/EBGaramond-Regular.ttf"
+define gui.interface_label_font = "gui/EBGaramond-SemiBold.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -72,22 +75,22 @@ define gui.text_size = 33
 define gui.name_text_size = 45
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 33
+define gui.interface_text_size = 32
 
 ## The size of labels in the game's user interface.
-define gui.label_text_size = 36
+define gui.label_text_size = 32
 
 ## The size of text on the notify screen.6
 define gui.notify_text_size = 24
 
 ## The size of the game's title.
-define gui.title_text_size = 75
+define gui.title_text_size = 64
 
 
 ## Main and Game Menus #########################################################
 
-## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
+# ## The images used for the main and game menus.
+define gui.main_menu_background = im.Scale(f"gui/{preferences.theme}_main_menu.png", 1920, 1080)
 define gui.game_menu_background = "gui/game_menu.png"
 
 
@@ -164,7 +167,7 @@ define gui.button_text_font = gui.interface_text_font
 define gui.button_text_size = gui.interface_text_size
 
 ## The color of button text in various states.
-define gui.button_text_idle_color = gui.idle_color
+define gui.button_text_idle_color = preferences.theme == "red" and red or green
 define gui.button_text_hover_color = gui.hover_color
 define gui.button_text_selected_color = gui.selected_color
 define gui.button_text_insensitive_color = gui.insensitive_color
@@ -180,9 +183,9 @@ define gui.button_text_xalign = 0.0
 ##
 ## These customizations are used by the default interface:
 
-define gui.radio_button_borders = Borders(27, 6, 6, 6)
+define gui.radio_button_borders = Borders(0, 10, 10, 10)
 
-define gui.check_button_borders = Borders(27, 6, 6, 6)
+define gui.check_button_borders = Borders(0, 10, 10, 10)
 
 define gui.confirm_button_text_xalign = 0.5
 
