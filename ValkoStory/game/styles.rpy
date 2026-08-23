@@ -64,7 +64,7 @@ style slider:
     thumb_offset 0
 
 style vslider:
-    xsize gui.slider_size
+    xsize gui.slider_size 
     base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/slider/vertical_[prefix_]thumb.png"
 
